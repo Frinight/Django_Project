@@ -1,0 +1,56 @@
+.tit
+{
+	word-break: break-word;
+	font-size: 2rem;
+	font-weight: 600;
+	line-height: 1.125;
+	font-family: "Bebas";
+}
+.head{
+    background-color: #352c85;
+    color: #fff;
+}
+.header{
+	padding-top: 40px;
+	margin-bottom: 40px;
+	overflow: hidden;
+	text-align: center;
+}
+.header_title{
+	display: inline-block;
+	text-align: center;
+	width: 380px;
+}
+.header_logo{
+	float: left;
+	text-align: left;
+	margin-left: 3rem;
+	margin-bottom: 2rem;
+}
+.header_auto{
+	float: right;
+	text-align: right;
+	width: 100%;
+	max-width: 340px;
+}
+.header_auto-top{
+	overflow: hidden;
+}
+.header_enter{
+	display: block;
+	width: 50%;
+	margin: 10px 85px 10px;
+}
+.header_user{
+	position:relative;
+	display: block;
+	width: 100%;
+	margin: auto;
+}
+.header_user-fio{
+	position:relative;
+	font-size: 1.25rem;
+	font-family: "Bebas";
+	font-weight: 400;
+	right: 10%;
+}

@@ -1,0 +1,13 @@
+/****//* Thin */
+@font-face {
+    font-family: 'Bebas';
+    src: local('Bebas'),         local('Bebas-Thin'),         url('../Fonts/fonts/Bebas-Thin.ttf') format('truetype'),         url('../Fonts/fonts/Bebas-Thin.eot?'),         url('../Fonts/fonts/Bebas-Thin.woff') format('woff');     font-weight: 100;    font-style: normal;}/* Regular */
+@font-face {
+    font-family: 'Bebas';
+    src: local('Bebas'),         local('Bebas-Regular'),         url('../Fonts/fonts/Bebas-Regular.ttf') format('truetype'),         url('../Fonts/fonts/Bebas-Regular.eot?'),         url('../Fonts/fonts/Bebas-Regular.woff') format('woff');     font-weight: 400;    font-style: normal;}/* Bold */
+@font-face {
+    font-family: 'Bebas';
+    src: local('Bebas'),         local('Bebas-Bold'),         url('../Fonts/fonts/Bebas-Bold.ttf') format('truetype'),         url('../Fonts/fonts/Bebas-Bold.eot?'),         url('../Fonts/fonts/Bebas-Bold.woff') format('woff');     font-weight: 700;    font-style: normal;}/* Book */
+@font-face {
+    font-family: 'Bebas';
+    src: local('Bebas'),         local('Bebas-Book'),         url('../Fonts/fonts/Bebas-Book.ttf') format('truetype'),         url('../Fonts/fonts/Bebas-Book.eot?'),         url('../Fonts/fonts/Bebas-Book.woff') format('woff');     font-weight: normal;    font-style: normal;}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru-RU">
+    <head>
+        <title>Receipts</title>
+        <meta http-equiv="Content-Type" content="txt/html; charset=UTF-8" />
+        <link href="{% static 'css/fonts.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'css/bebas_fonts.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'css/2.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'css/3.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'css/1.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'css/header.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'css/footer.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'css/menu.css' %}" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <div class="wrapper">
+            <header>
+                <section class="head">
+                    <div class="header">
+                        <div class="header_logo">
+                            <a href="">
+                                <img src="{% static 'images/food.png' %}" width="200px" />
+                            </a>
+                        </div>
+                        <div class="header_title">
+                            <h1 class="tit">
+                               Рецепты на любой вкус!
+                            </h1>
+                        </div>
+                        <div class="header_auto">
+                            <div class="header_enter">
+                                <span class="g_btn"><a id="reference" href="">Вход</a></span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </header>
+            <nav class="main_nav">
+                <ul class="main_nav-list">
+                    <li><a href="" >Главная</a></li>
+                    <li><a href="" >Добавить рецепт</a></li>
+                    <li><a href="" >Регистрация</a></li>
+                </ul>
+            </nav>
+            <main class = "main_content">
+                {% block content %}
+                {% endblock content %}
+            </main>
+            <footer>
+                <div class="footer">
+                    <!-- <div class="footer_logo">
+                        <span class="footer_logo-logo">Receipts</span>
+                        <span class="copyright">© 2021 Receipts</span>
+                    </div>
+                    <nav class="footer_nav">
+                        <ul class="footer_list">
+                            <li><a href="">О компании</a></li>
+                            <li><a href="">Каталог</a></li>
+                        </ul>
+                        <ul class="footer_list">
+                            <li><a href="">Корзина</a></li>
+                            <li><a href="">Заказ</a></li>
+                        </ul>
+                        <ul class="footer_list">
+                            <li><a href="">Регистрация</a></li>
+                            <li><a href="">Контакты</a></li>
+                        </ul>
+                    </nav>
+                    <ul class="footer_social">
+                        <li><a class="footer_social-vk" href=""><img src="Images/vk.jpg" width="30px"/></a></li>
+                        <li><a class="footer_social-f" href=""><img src="Images/f.jpg" width="30px"/></a></li>
+                        <li><a class="footer_social-i" href=""><img src="Images/i.jpg" width="30px"/></a></li> -->
+                    </ul> 
+            </footer>
+        </div>
+    </body>
+</html>

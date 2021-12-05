@@ -1,0 +1,47 @@
+.footer{
+	margin: 0 auto 15px;
+	padding: 50px 50px 10px 50px;
+	background-color: #a9a9a9;
+	width: 91.74%;
+	overflow: hidden;
+}
+.footer_logo{
+	font-size: 2.5rem;
+	float: left;
+	margin-right: 150px;
+}
+.footer_logo-logo{
+	line-height: 25px;
+	text-transform: uppercase;
+	font-family: "Bebas";
+	font-weight: 700;
+	color: #0051a2;
+}
+.copyright{
+	display: block;
+	font-size: .75rem;
+	color: #616161
+}
+.footer_nav{
+	display: inline-block;
+	text-align: center;
+	vertical-align: top;
+}
+.footer_list{
+	display: inline-block;
+	text-align: left;
+	margin-right: 140px;
+}
+.footer_list a{
+	display: block;
+	margin-bottom: 20px;
+	text-decoration: underline;
+	font-size: .875rem;
+}
+.footer_social{
+	display: inline-block;
+}
+.footer_social li{
+	display: inline-block;
+	margin-right: 10px;
+}

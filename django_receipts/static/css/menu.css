@@ -1,0 +1,30 @@
+.main_nav{
+	background-color: #ce0080;
+	padding: 0 110px;
+	position: relative;
+	margin-bottom: 15px;
+}
+.main_nav-list > li{
+	display: inline-block;
+	vertical-align: top;
+	margin-right: 45px;
+	width: 20%;
+	text-align: center;
+}
+li:last-child{
+	margin-right: 0;
+}
+.main_nav-list a{
+	display: block;
+	width: 100%;
+	height: 100%;
+	padding: 15px 0;
+	font-family: "Bebas";
+	font-weight: 700;
+	font-size: 1.5rem;
+	color: white;
+	text-transform: uppercase;
+}
+.main_nav-list a:hover{
+	color: #352c85;
+}

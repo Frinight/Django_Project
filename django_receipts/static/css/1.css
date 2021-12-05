@@ -1,0 +1,42 @@
+.wrapper{
+	width: 100%;
+	max-width: 1200px;
+	margin: 0 auto
+}
+.g_btn{
+	display: inline-block;
+	width: 100%;
+	background-color: red;
+	border-radius: 5px;
+	color: white;
+	line-height: 30px;
+	font-size: .875rem;
+	text-align: center;
+	border: none;
+	margin-bottom: 10px;
+	cursor: pointer;
+}
+.form_title{
+	display: block;
+	margin-bottom: 20px;
+	font-family: "Bebas";
+	font-weight: 700;
+	color: white;
+	font-size: 1.75rem;
+	text-align: center;
+	text-transform: uppercase;
+}
+.section_title{
+	display: block;
+	margin-bottom: 30px;
+	font-family: "Bebas";
+	font-weight: 700;
+	color: #036ff4;
+	font-size: 1.875rem;
+	margin-top: 0px;/*временно*/
+}
+#reference{
+	color:white;
+	font-size: .875rem;
+	text-align: center;
+}
