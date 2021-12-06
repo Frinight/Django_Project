@@ -1,0 +1,33 @@
+.main_banner{
+	overflow: hidden;
+}
+.main_banner-form{
+	float: left;
+	width: 24.15%;
+	padding: 25px 30px;
+	background-color: #036ff4;
+}
+.main_auto{
+	width:100%;
+	max-width: 270px;
+	border-radius: 5px;
+	line-height: 30px;
+	height: 30px;
+	padding: 0 10px;
+	border: none;
+	margin-bottom: 10px;
+}
+
+.reg_text{
+	text-align: center;
+	color: white;
+	display: block;
+	margin-bottom: 10px;
+	font-family: "Bebas";
+	font-weight: 400;
+	font-size: 1.25rem
+}
+.main_slider{
+	float:right;
+	width: 75%;
+}

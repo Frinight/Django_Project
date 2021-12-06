@@ -12,6 +12,8 @@
         <link href="{% static 'css/header.css' %}" rel="stylesheet" type="text/css" />
         <link href="{% static 'css/footer.css' %}" rel="stylesheet" type="text/css" />
         <link href="{% static 'css/menu.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'css/banners.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'css/catalog.css' %}" rel="stylesheet" type="text/css" />
     </head>
     <body>
         <div class="wrapper">
@@ -29,9 +31,24 @@
                             </h1>
                         </div>
                         <div class="header_auto">
-                            <div class="header_enter">
+                            {% if user.is_authenticated %}
+                            <p>Вы вошли как {{ user.username }}!</p>
+                            <form action="/logout/" method="POST"> {% csrf_token %}
+                                <input class="g_btn" type="submit" name="entry" value="Выход"/>
+                            </form>
+                            {% else %}
+                            <form action="/log/" method="POST"> {% csrf_token %}
+                                <input class = "main_auto" type="text" name="login" placeholder="Логин" />
+                                <input class = "main_auto" type="password" name="password" placeholder="Пароль" />
+                                <input class="g_btn" type="submit" name="entry" value="Вход"/>
+                            </form>
+                            {% endif %}
+                            {% if mes %}
+                            <p>{{mes}}</p>
+                            {% endif %}
+                            <!-- <div class="header_enter">
                                 <span class="g_btn"><a id="reference" href="">Вход</a></span>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </section>

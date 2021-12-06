@@ -23,5 +23,5 @@ class Ingredient(models.Model):
     unit = models.CharField(max_length=15)
     cost = models.DecimalField(max_digits=8, decimal_places=2,)
     def __str__(self):
-        return self.recipe.name + ": Ингредиент \"" + self.product.name + "\"" + " в количестве " + str(self.qty) + " " + self.unit
+        return  "\"" + self.product.name + "\"" + " в количестве " + str(self.qty) + " " + self.unit
 

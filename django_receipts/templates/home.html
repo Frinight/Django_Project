@@ -1,4 +1,31 @@
 {% extends 'base.html' %}
 {% block content %}
-  <h1>Содержимое</h1>
+  <aside class = "catalog">
+    <ul class = "catalog_list">
+      <li><a href="">Все рецепты</a></li>
+      <li><a href="">Мои рецепты</a></li>
+    </ul>
+  </aside>
+  <div class = "receipts">
+    {% for receipt in receipts_data %}
+      <div class = "receipt_object" style = "margin-bottom: 20px;">
+        <span class = "receipt_object-title">{{receipt.name}}</span>
+        <div class = "receipt_object-content">
+          <p class="des">{{receipt.description}}</p>
+          <span class = "receipt_object-ing">Ингредиенты:</span>
+          <ul class = "computers_object-characteristics">
+            {% for ingredient in receipt.components %}
+              <li class="line"><span class="ingredient">{{ingredient}}</span></li>
+            {% endfor %}
+          </ul>
+          <span class = "price">Цена: {{receipt.cost}}<span class="comp_ruble">Р</span></span>
+          <span class = "price">Вес: {{receipt.weight}} г </span>
+          <div class="card-body">
+            <a href="#" class="card-link">Редактировать</a>
+            <a href="#" class="card-link">Удалить</a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
 {% endblock content %}
