@@ -2,8 +2,8 @@
 {% block content %}
   <aside class = "catalog">
     <ul class = "catalog_list">
-      <li><a href="">Все рецепты</a></li>
-      <li><a href="">Мои рецепты</a></li>
+      <li><a href="{% url 'home' %}">Все рецепты</a></li>
+      <li><a href="{% url 'my_receipts' %}">Мои рецепты</a></li>
     </ul>
   </aside>
   <div class = "receipts">
@@ -21,7 +21,7 @@
           <span class = "price">Цена: {{receipt.cost}}<span class="comp_ruble">Р</span></span>
           <span class = "price">Вес: {{receipt.weight}} г </span>
           <div class="card-body">
-            <a href="#" class="card-link">Редактировать</a>
+            <a href="/recipe/{{receipt.id}}/" class="card-link">Редактировать</a>
             <a href="#" class="card-link">Удалить</a>
           </div>
         </div>

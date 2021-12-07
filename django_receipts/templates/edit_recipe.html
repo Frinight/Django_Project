@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="personal_banner-form">
+    <span class="form_title">рецепт</span>
+    <form method="POST" action="/recipe/{{pk}}/edit/" class="login-form spacer" id="signup-form">
+    {% csrf_token %}
+    
+        <div class="input-group">
+            {{form.name}}
+        </div>
+        <div class="input-group">
+            {{form.total_weight}}
+        </div>
+        <div class="input-group">
+            {{form.description}}
+        </div>
+
+        <input class="but" type="submit" class="submit" value="Сохранить">
+    </form>
+</div>
+<section class = "favourite">
+    <div class = "watch_orders">
+        <h1 class = "title">Ингредиенты</h1>
+        <table class = "basket-table" >
+        <thead>
+            <tr>
+                <th>Ингредиент</th>
+                <th>Количество</th>
+                <th>Ед. изм.</th>
+                <th>Стоимость</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td id = "lines_basket" class = "basket-table_product">
+                    <span class = "basket-table_name"> --               </span>
+                </td>
+                <td id = "lines_basket"class = "basket-table_count">
+                    <div class = "basket-count">
+                        <div class = "minus">
+                            <span><a href = "" title = "Уменьшить">&#8211;</a></span>
+                        </div>
+                        <div class = "current">
+                            <input class = "g-input" type = "text" value = "    ----     " readonly>
+                        </div>
+                        <div class = "plus">
+                            <span><a href = "" title = "Увеличить">+</a></span>
+                        </div>
+                    </div>
+                </td >
+                <td id = "lines_basket" class = "basket-table_price">
+                    <span>----                    </span>
+                </td>
+                <td id = "lines_basket" class = "basket-table_total">
+                    <span>   ----- &#8381;</span>
+                </td>
+                <td id = "lines_basket" class = "basket-table_remove">
+                    <span><a href="" title = "Удалить">&times;</a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class = "Total" colspan = 2></td>
+                <td class = "Total">Итого:</td>
+                <td class = "Total_price">---- &#8381;</td>
+                <td class = "Total"></td>
+            </tr>
+        </tbody>
+        </table>
+        <div class = "actions">
+            <div class="reset_basket">
+                    <span class="g_btn"><a id="reference" href = "------">Очистить корзину</a></span>
+            </div>
+            <div class="order">
+                    <span class="g_btn"><a id="reference" href = "-------">Оформить заказ</a></span>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

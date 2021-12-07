@@ -1,0 +1,157 @@
+.container{
+	display:block;
+	justify-content: space-between;
+}
+.basket-table{
+	border-collapse: collapse;
+	text-align: center;
+	width: 100%;
+	margin-bottom: 30px;
+}
+.basket-table > thead > tr > th{
+	border-bottom: 3px solid #036ff4;
+	font-family: "RobotoBold";
+	text-align: center;
+	padding: 10px;
+	color: red;
+	font-size: 1.5rem;
+}
+#lines_basket{
+	border-bottom: 3px solid #036ff4;
+	font-weight: 400;
+	font-size: 1.25rem;
+	height: 120px;
+	vertical-align: middle;
+}
+.basket-table_product{
+	width: 50%;
+	text-align: left;
+}
+.basket-table_name{
+	position: relative;
+	padding-left: 120px;
+	text-decoration: underline;
+	line-height: 1.3;
+}
+.basket-table_img{
+	position: absolute;
+	max-height: 100px;
+	transform: translateY(-37%);
+}
+.basket-table_price{
+	white-space: nowrap;
+	text-align: center;
+}
+.basket-table_total{
+	white-space: nowrap;
+	font-weight: 700;
+	text-align: center;
+}
+.basket-count{
+	display: flex;
+	text-align: center;
+	padding-left: 19%;
+}
+.minus{
+	position: relative;
+	font-size: 2rem;
+	border: 2px solid black;
+}
+.minus > span > a{
+	padding: 0 15px;
+	
+}
+.g-input{
+	margin: 0 5px;
+	position: relative;
+	height: 32px;
+	line-height: 32px;
+	width: 40px;
+}
+.plus{
+	position: relative;
+	font-size: 2rem;
+	border: 2px solid black;
+}
+.plus > span > a{
+	padding: 0 15px;
+}
+.basket-table_remove > span > a{
+	font-size: 2rem;
+	text-align: center;
+}
+.reset_basket{
+	display:inline-block;
+	width: 20%;	
+	margin-right: 59.65%;
+}
+.basket-table_total{
+	font-family: "RobotoBold";
+	text-align: center;
+}
+.order{
+	display:inline-block;
+	width: 20%;	
+}
+.Total{
+	border-bottom: 3px solid #036ff4;
+	height: 120px;
+	vertical-align: middle;
+	
+	font-family: "Bebas";
+	font-weight: 700;
+	font-size: 2.5rem;
+	text-align: center;
+	color: red;
+}
+.Total_price{
+	border-bottom: 3px solid #036ff4;
+	height: 120px;
+	vertical-align: middle;
+	
+	font-family: "Bebas";
+	font-weight: 700;
+	font-size: 2.5rem;
+	text-align: center;
+}
+.choose_delivery{
+	display:inline-block;
+	margin-right: 44.69%;	
+	font-family: "Bebas";
+	font-weight: 700;
+	font-size: 1.5rem;
+}
+.watch_orders{
+	width: 70%;
+	overflow: hidden;
+    float: left;
+}
+.order-table{
+	border-collapse: collapse;
+	text-align: center;
+	width: 100%;
+	margin-bottom: 30px;
+}
+#lines_order{
+	border-bottom: 3px solid #036ff4;
+	font-weight: 400;
+	font-size: 1rem;
+	height: 120px;
+	vertical-align: middle;
+}
+.order-table > thead > tr > th{
+	border-bottom: 3px solid #036ff4;
+	font-family: "RobotoBold";
+	text-align: center;
+	padding: 10px;
+	color: red;
+	font-size: 1.5rem;
+}
+.order_title{
+	display: block;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	font-family: "Bebas";
+	font-weight: 700;
+	font-size: 1.25rem;
+}

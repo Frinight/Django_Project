@@ -54,3 +54,11 @@
 	font-weight: 400;
 	right: 10%;
 }
+.w{
+	margin-bottom: 2rem;
+}
+.auth{
+	font-weight: 600;
+	line-height: 1.5;
+	font-family: "Bebas";
+}

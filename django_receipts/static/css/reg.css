@@ -1,0 +1,110 @@
+.reg_banner-form{
+	width: 30%;
+	padding: 25px 30px;
+	background-color: #036ff4;
+	margin-bottom: 20px;
+	position: relative;
+    left: 35.425%;
+	text-align: center;
+}
+.but{
+	display: block;
+	margin-top: 10px;
+	margin-left: 110px;
+	background-color: red;
+	border-radius: 5px;
+	color: white;
+	line-height: 30px;
+	font-size: .875rem;
+	text-align: center;
+	border: none;
+	margin-bottom: 10px;
+	align-self: center;
+	cursor: pointer;
+}
+.main_auto{
+	width:100%;
+	max-width: 290px;
+	border-radius: 5px;
+	line-height: 30px;
+	height: 30px;
+	padding: 0 10px;
+	border: none;
+	margin-bottom: 10px;
+}
+form > span{
+	color: red;
+	position: relative;
+	bottom: 35px;
+	left: 295px;
+	font-size: 1.125rem;
+}
+.address{
+	margin: 20px 0;
+}
+#message {
+	background: rgba(102, 102, 102, 0.5);
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	display: block;
+}
+#window {
+	width: 900px;
+	height: 25px;
+	text-align: center;
+	padding: 15px;
+	border-radius: 10px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin: auto;
+	background: white;
+	font-family: "Bebas";
+	font-weight: bold;
+	font-size: 1.25rem;
+}
+#reg {
+	width: 900px;
+	height: 75px;
+	text-align: center;
+	padding: 15px;
+	border-radius: 10px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin: auto;
+	background: white;
+	font-family: "Bebas";
+	font-weight: bold;
+	font-size: 1.25rem;
+}
+
+#message:target {display: none;}
+.close {
+float: right;
+position: relative;
+bottom: 40px;
+color: #000;
+padding: 0 12px;
+margin: 10px;
+background: #888888;
+font-size: 1rem;
+cursor:pointer;
+}
+.close:hover {background: red;}
+
+.personal_banner-form{
+	width: 24.15%;
+	padding: 25px 30px;
+	background-color: #036ff4;
+	margin-bottom: 20px;
+	overflow: hidden;
+    float: right;
+}
