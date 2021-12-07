@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="reg_banner-form">
+    <span class="form_title">ингредиент</span>
+    <form method="POST" action="/recipe/{{pk}}/ing/{{ing.id}}/edit/">
+    {% csrf_token %}
+    
+        <div class="input-group">
+            {{form.product_name}}
+        </div>
+        <div class="input-group">
+            {{form.qty}}
+        </div>
+        <div class="input-group">
+            {{form.unit}}
+        </div>
+        <div class="input-group">
+            {{form.cost}}
+        </div>
+
+        <input class="but_ing" type="submit" value="Сохранить">
+    </form>
+</div>
+{% if f %}
+<div id="message">
+    <div id="reg" style="border: 3px solid red;color:red;">
+        <div width = "50%" >
+            {{form.errors}}
+        </div>
+        <a href="#message" class="close">&times;</a>
+    </div>
+</div>
+{% endif %}
+{% endblock content %}

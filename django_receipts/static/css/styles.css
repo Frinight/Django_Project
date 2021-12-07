@@ -11,6 +11,15 @@
     margin-right: 7px
 }
 
+#id_product_name {
+    padding: 10px;
+    width: 100%;
+    border-radius: 10px;
+    text-indent: 15%;
+    margin-bottom: 7px;
+    margin-right: 7px
+}
+
 .form-input:hover, .form-input:focus{
     border: solid 2px #203bd4;
 }

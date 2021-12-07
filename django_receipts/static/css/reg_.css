@@ -22,6 +22,21 @@
 	align-self: center;
 	cursor: pointer;
 }
+.but_ing{
+	display: block;
+	margin-top: 10px;
+	margin-left: 145px;
+	background-color: red;
+	border-radius: 5px;
+	color: white;
+	line-height: 30px;
+	font-size: .875rem;
+	text-align: center;
+	border: none;
+	margin-bottom: 10px;
+	align-self: center;
+	cursor: pointer;
+}
 .main_auto{
 	width:100%;
 	max-width: 290px;

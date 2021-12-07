@@ -24,12 +24,11 @@
 	vertical-align: middle;
 }
 .basket-table_product{
-	width: 50%;
+	width: 30%;
 	text-align: left;
 }
 .basket-table_name{
 	position: relative;
-	padding-left: 120px;
 	text-decoration: underline;
 	line-height: 1.3;
 }

@@ -1,7 +1,67 @@
 from django import forms
-from .models import Recipe, Ingredient
+from .models import Recipe, Ingredient, Product
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+
+class ProductForm(forms.ModelForm):
+    class Meta:
+        model = Product 
+        fields = ['name']
+        widgets = {
+            'name' : forms.TextInput(attrs=
+            {
+                'class' : 'input', 
+                'required':'',
+                'name':'name',
+                'id':'name',
+                'type':'text',
+                'placeholder' : 'Наименование продукта'
+            })}
+
+class IngredientCreationForm(forms.ModelForm):
+
+    product_name = forms.CharField(max_length=255, label=False)
+    class Meta:
+        model = Ingredient
+        fields = ('product_name', 'qty', 'unit', 'cost',)
+        widgets = {
+            'product_name': forms.TextInput(attrs=
+            {
+                'class': 'form-input',
+                'required':'',
+                'name':'product_name',
+                'id':'product_name',
+                'type':'text',
+                'placeholder':'Ингредиент',
+            }),
+            'qty': forms.NumberInput(attrs=
+            {
+                'class': 'form-input',
+                'required':'',
+                'name':'qty',
+                'id':'qty',
+                'type':'number',
+                'placeholder':'Количество',
+            }),
+            'unit': forms.TextInput(attrs=
+            {
+                'class': 'form-input',
+                'required':'',
+                'name':'unit',
+                'id':'unit',
+                'type':'text',
+                'placeholder':'Единица измерения',
+            }),
+            'cost': forms.NumberInput(attrs=
+            {
+                'class': 'form-input',
+                'required':'',
+                'name':'cost',
+                'id':'cost',
+                'type':'number',
+                'placeholder':'Стоимость',
+            })
+        }
 
 class RecipeCreationForm(forms.ModelForm):
 
@@ -34,9 +94,20 @@ class RecipeCreationForm(forms.ModelForm):
                 'name':'description',
                 'id':'description',
                 'type':'text',
-                'placeholder':'Описнание',
+                'placeholder':'Описание',
             })
         }
+    # def save(self, commit=True):
+    #     rec = super(RecipeCreationForm, self).save(commit=False)
+    #     rec.name = self.cleaned_data['name']
+    #     rec.total_weight = self.cleaned_data['total_weight']
+    #     rec.total_cost = 309
+    #     rec.description = self.cleaned_data['description']
+
+    #     if commit:
+    #         rec.save()
+
+    #     return rec
 
 class SignUpForm(UserCreationForm):
 

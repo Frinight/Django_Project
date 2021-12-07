@@ -29,52 +29,77 @@
                 <th>Ед. изм.</th>
                 <th>Стоимость</th>
                 <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
+            {% for ingredient in components %}
             <tr>
-                <td id = "lines_basket" class = "basket-table_product">
-                    <span class = "basket-table_name"> --               </span>
+                <td id = "lines_order" class = "basket-table_product">
+                    <span class = "basket-table_name">{{ingredient.product.name}}</span.>
                 </td>
-                <td id = "lines_basket"class = "basket-table_count">
-                    <div class = "basket-count">
-                        <div class = "minus">
-                            <span><a href = "" title = "Уменьшить">&#8211;</a></span>
-                        </div>
-                        <div class = "current">
-                            <input class = "g-input" type = "text" value = "    ----     " readonly>
-                        </div>
-                        <div class = "plus">
-                            <span><a href = "" title = "Увеличить">+</a></span>
-                        </div>
+                <td id = "lines_order" class = "basket-table_price">
+                    <span>{{ingredient.qty}}</span>
+                </td>
+                <td id = "lines_order"class = "basket-table_count">
+                    <div class = "basket-table_price">
+                        <span>{{ingredient.unit}}</span>
                     </div>
                 </td >
-                <td id = "lines_basket" class = "basket-table_price">
-                    <span>----                    </span>
+                <td id = "lines_order" class = "basket-table_total">
+                    <span>{{ingredient.cost}} &#8381;</span>
                 </td>
-                <td id = "lines_basket" class = "basket-table_total">
-                    <span>   ----- &#8381;</span>
+                <td id = "lines_basket" class = "basket-table_count">
+                    <span><a href="/recipe/{{pk}}/ing/{{ingredient.id}}/" title = "Изменить" class="card-link">Изменить</a></span>
                 </td>
                 <td id = "lines_basket" class = "basket-table_remove">
-                    <span><a href="" title = "Удалить">&times;</a></span>
+                    <span><a href="" title = "Удалить" >&times;</a></span>
                 </td>
             </tr>
+            {% endfor %}
             <tr>
                 <td class = "Total" colspan = 2></td>
                 <td class = "Total">Итого:</td>
-                <td class = "Total_price">---- &#8381;</td>
+                <td class = "Total_price">{{sum}} &#8381;</td>
+                <td class = "Total"></td>
                 <td class = "Total"></td>
             </tr>
         </tbody>
         </table>
-        <div class = "actions">
-            <div class="reset_basket">
-                    <span class="g_btn"><a id="reference" href = "------">Очистить корзину</a></span>
+        <style>
+        .container {
+        display: inline-block;
+        position: relative;
+        top: 10px;
+        width: 300px;
+        margin-bottom: 15px;
+        }
+        .container .input {
+        height: 25px;
+        width:70%;
+        }
+        .container .g_btn {
+        height: 32px;
+        width:24%;
+        }
+        </style>
+        <form action="/recipe/{{pk}}/add/" method="POST">
+            {% csrf_token %}
+            <div class="container">
+            {{form_prod.name}}
+            <input class="g_btn" type="submit" value="Добавить" />
             </div>
-            <div class="order">
-                    <span class="g_btn"><a id="reference" href = "-------">Оформить заказ</a></span>
-            </div>
-        </div>
+        </form>
     </div>
 </section>
+{% if f %}
+<div id="message">
+    <div id="reg" style="border: 3px solid red;color:red;">
+        <div width = "50%" >
+            {{form.errors}}
+        </div>
+        <a href="#message" class="close">&times;</a>
+    </div>
+</div>
+{% endif %}
 {% endblock content %}
