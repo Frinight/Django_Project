@@ -20,12 +20,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-w1o()*03=(jb6t!5t9t1r2r676ws2ma)yc6w_utjx()df#i!ou'
+# SECRET_KEY = 'django-insecure-w1o()*03=(jb6t!5t9t1r2r676ws2ma)yc6w_utjx()df#i!ou'
+
+import os
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-w1o()*03=(jb6t!5t9t1r2r676ws2ma)yc6w_utjx()df#i!ou')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['receipts-deploy.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -42,6 +45,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -129,3 +133,7 @@ STATICFILES_DIRS = [Path.joinpath(BASE_DIR, 'static')]
 
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
+
+# The absolute path to the directory where collectstatic will collect static files for deployment.
+
+STATIC_ROOT = Path.joinpath(BASE_DIR, 'staticfiles')
