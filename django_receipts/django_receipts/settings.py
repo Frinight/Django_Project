@@ -78,12 +78,25 @@ WSGI_APPLICATION = 'django_receipts.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'dcu3m3a4qvpi',
+        'HOST': 'ec2-52-6-77-239.compute-1.amazonaws.com',
+        'PORT' : 5432,
+        'USER' : 'jbisqildwyzgej',
+        'PASSWORD' : 'a4cb677836fdb29e2f974620aea464334df369f43501ed6c24bca9c3d352d0da',
     }
 }
+
+# postgres://jbisqildwyzgej:a4cb677836fdb29e2f974620aea464334df369f43501ed6c24bca9c3d352d0da@ec2-52-6-77-239.compute-1.amazonaws.com:5432/dcu3m3a4qvpi
 
 
 # Password validation
