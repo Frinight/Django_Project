@@ -1,5 +1,5 @@
 from django import forms
-from .models import Recipe, Ingredient, Product
+from .models import Recipe, Ingredient, Product, Note
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 

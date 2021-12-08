@@ -23,6 +23,11 @@
           <div class="card-body">
             <a href="/recipe/{{receipt.id}}/" class="card-link">Редактировать</a>
             <a href="/del/{{receipt.id}}/" class="card-link">Удалить</a>
+            {% if receipt.note %}
+            <a href="/note/{{receipt.id}}/" class="card-link" style="color:green">Отмечено</a>
+            {% else %}
+            <a href="/note/{{receipt.id}}/" class="card-link" style="color:red">Отметить</a>
+            {% endif %}
           </div>
         </div>
       </div>

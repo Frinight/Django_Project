@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class = "favourite">
+    <div class = "container">
+        <h1 class = "title">Список продуктов</h1>
+        <table class = "basket-table" >
+        <thead>
+            <tr>
+                <th>Ингредиент</th>
+                <th>Требуемое количество</th>
+                <th>Стоимость</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for ingredient in l %}
+            <tr>
+                <td id = "lines_order" class = "basket-table_product">
+                    <span class = "basket-table_name">{{ingredient.name}}</span.>
+                </td>
+                <td id = "lines_order"class = "basket-table_count">
+                    <div class = "basket-table_price">
+                        <span>{{ingredient.qty}}</span>
+                    </div>
+                </td >
+                <td id = "lines_order" class = "basket-table_total">
+                    <span>{{ingredient.cost}} &#8381;</span>
+                </td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <td class = "Total"></td>
+                <td class = "Total">Итого:</td>
+                <td class = "Total_price"> &#8381;</td>
+            </tr>
+        </tbody>
+        </table>
+    </div>
+</section>
+{% endblock content %}

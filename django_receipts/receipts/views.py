@@ -3,7 +3,7 @@ from django.shortcuts import redirect, render
 from django.contrib.auth import logout, login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.urls.base import reverse
-from .models import Recipe, Product, Ingredient
+from .models import Recipe, Product, Ingredient, Note
 from django.db.models import Sum
 from django.urls import reverse_lazy 
 # import itertools
@@ -21,6 +21,7 @@ def receipt_list(request):
             'weight' : r.total_weight,
             'description' : r.description,
             'components' : list(map(lambda x: str(x), list(r.ingredient_set.all()))),
+            'note': False if not request.user.is_authenticated or Note.objects.filter(author__username=request.user.username, recipe_id=r.id).count() == 0 else True,
         }
         receipts_data.append(receipt_data)
 
@@ -203,3 +204,29 @@ def del_receipt(request, pk):
 def del_ing(request, pk, ing_pk):
     ing = Ingredient.objects.get(id=ing_pk).delete()
     return update_page(request, pk)
+
+def note(request, pk):
+    if request.user.is_authenticated:
+        is_exist = Note.objects.filter(author__username=request.user.username, recipe_id=pk).count()
+        if is_exist == 0:
+            Note.objects.create(author_id=request.user.id, recipe_id=pk)
+        else:
+            Note.objects.get(author_id=request.user.id, recipe_id=pk).delete()
+        return receipt_list(request)
+    else:
+        context = {'mes' : "Вы не авторизованы"}
+        return render(request, 'home.html', context)
+
+def chosen(request):
+    if request.user.is_authenticated:
+        receipts_id = [obj.recipe_id for obj in Note.objects.filter(author__username=request.user.username)]
+        ingredients_id = []
+        for obj in Recipe.objects.all():
+            if obj.id in receipts_id:
+                ingredients_id.extend(obj.ingredient_set.in_bulk())
+        l =  [{'name': obj.product.name, 'qty': obj.qty, 'unit': obj.unit, 'cost': obj.cost} for obj in Ingredient.objects.all() if obj.id in ingredients_id]
+        print(l)
+        return render(request, 'chosen.html', {'l': l})
+    else:
+        context = {'mes' : "Вы не авторизованы"}
+        return render(request, 'home.html', context)

@@ -25,3 +25,7 @@ class Ingredient(models.Model):
     def __str__(self):
         return  "\"" + self.product.name + "\"" + " в количестве " + str(self.qty) + " " + self.unit
 
+class Note(models.Model):
+    author = models.ForeignKey('auth.User', on_delete=models.CASCADE, null=True, )
+    recipe = models.ForeignKey(Recipe, on_delete = models.CASCADE)
+
