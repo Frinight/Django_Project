@@ -18,7 +18,6 @@ def receipt_list(request):
     for r in receipts:
         receipt_data = {
             'id' : r.id,
-            'author': r.author.username,
             'name' : r.name,
             'cost' : r.total_cost,
             'weight' : r.total_weight,
@@ -84,7 +83,7 @@ def add_user(request):
     form = SignUpForm(request.POST or None)
     if request.method == 'POST' and form.is_valid():
         form.save()
-        return render(request, 'home.html', {'mes' : 'Пользователь успешно зарегистрирован', 'f':True})
+        return render(request, 'home.html', {'mes' : 'Пользователь успешно зарегистрирован'})
     return render(request, 'signup.html', {'form': form, 'f':True})
 
 def my_receipts(request):
