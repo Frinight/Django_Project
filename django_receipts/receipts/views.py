@@ -6,7 +6,7 @@ from django.urls.base import reverse
 from .models import Recipe, Product, Ingredient, Note
 from django.db.models import Sum
 from django.urls import reverse_lazy 
-# import itertools
+from itertools import groupby
 from .forms import *
 
 def receipt_list(request):
@@ -219,14 +219,49 @@ def note(request, pk):
 
 def chosen(request):
     if request.user.is_authenticated:
+        res = []
+        w = 0
+        c = 0
+        total = 0
         receipts_id = [obj.recipe_id for obj in Note.objects.filter(author__username=request.user.username)]
         ingredients_id = []
         for obj in Recipe.objects.all():
             if obj.id in receipts_id:
                 ingredients_id.extend(obj.ingredient_set.in_bulk())
-        l =  [{'name': obj.product.name, 'qty': obj.qty, 'unit': obj.unit, 'cost': obj.cost} for obj in Ingredient.objects.all() if obj.id in ingredients_id]
-        print(l)
-        return render(request, 'chosen.html', {'l': l})
+        d =  [{'name': obj.product.name, 'qty': obj.qty, 'unit': obj.unit, 'cost': obj.cost} for obj in Ingredient.objects.all() if obj.id in ingredients_id]
+        # print(d)
+        d = sorted(d, key=grouper)
+        for key, group_items in groupby(d, key=grouper):
+            # print('Key: %s' % key)
+            dict_elem = {'name': key}
+            group_items= sorted(group_items, key=subgrouper)
+            for subkey, subgroup_items in groupby(group_items, key=subgrouper): 
+                # print('Item: %s' % subkey)
+                w = 0
+                c = 0
+                for subitem in subgroup_items:
+                    w += subitem['qty']
+                    c += subitem['cost']
+                    # print('Item: %s' % subitem)
+                if dict_elem.get('unit', None) is None:
+                    dict_elem['unit'] = str(w) + " " + subkey
+                    dict_elem['cost'] = c
+                    total += c
+                else:
+                    dict_elem['unit'] += " + " + str(w) + " " + subkey
+                    dict_elem['cost'] += c
+                    total += c
+            res.append(dict_elem)
+        print(res)
+        return render(request, 'chosen.html', {'res': res, 'total': total})
     else:
         context = {'mes' : "Вы не авторизованы"}
         return render(request, 'home.html', context)
+
+def grouper(item):
+        """Будем использовать эту функцию для группировки сортировки."""
+        return item['name']
+
+def subgrouper(item):
+        """Будем использовать эту функцию для группировки сортировки."""
+        return item['unit']

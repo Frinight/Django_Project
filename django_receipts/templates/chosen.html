@@ -12,14 +12,14 @@
             </tr>
         </thead>
         <tbody>
-            {% for ingredient in l %}
+            {% for ingredient in res %}
             <tr>
                 <td id = "lines_order" class = "basket-table_product">
                     <span class = "basket-table_name">{{ingredient.name}}</span.>
                 </td>
                 <td id = "lines_order"class = "basket-table_count">
                     <div class = "basket-table_price">
-                        <span>{{ingredient.qty}}</span>
+                        <span>{{ingredient.unit}}</span>
                     </div>
                 </td >
                 <td id = "lines_order" class = "basket-table_total">
@@ -30,7 +30,7 @@
             <tr>
                 <td class = "Total"></td>
                 <td class = "Total">Итого:</td>
-                <td class = "Total_price"> &#8381;</td>
+                <td class = "Total_price"> {{total}}&#8381;</td>
             </tr>
         </tbody>
         </table>
