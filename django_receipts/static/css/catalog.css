@@ -55,10 +55,18 @@
 }
 .receipt_object-title{
 	display: block;
-	margin-bottom: 55px;
+	margin-bottom: 5px;
 	font-family: "Bebas";
 	font-weight: 700;
 	font-size: 1.5rem;
+}
+.receipt_object-author{
+	display: block;
+	margin-bottom: 25px;
+	font-family: "Bebas";
+	font-weight: 700;
+	font-size: 1rem;
+	color: #616161;
 }
 .receipt_object-ing{
 	display: block;

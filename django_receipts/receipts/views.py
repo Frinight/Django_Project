@@ -10,12 +10,15 @@ from itertools import groupby
 from .forms import *
 
 def receipt_list(request):
-
+    """
+    Для выведения списка рецептов на начальной странице
+    """
     receipts = Recipe.objects.all()
     receipts_data = []
     for r in receipts:
         receipt_data = {
             'id' : r.id,
+            'author': r.author.username,
             'name' : r.name,
             'cost' : r.total_cost,
             'weight' : r.total_weight,
@@ -29,6 +32,9 @@ def receipt_list(request):
     return render(request, 'home.html', context)
 
 def log(request):
+    """
+    Авторизация пользователей
+    """
     username = request.POST['login']
     print(username)
     password = request.POST['password']
@@ -48,10 +54,16 @@ def log(request):
         return render(request, 'home.html', context)
 
 def logout_view(request):
+    """
+    Выход из своей учетной записи
+    """
     logout(request)
     return HttpResponseRedirect('/')
 
 def signup(request):
+    """
+    Отображение страницы регистрации пользователей
+    """
     form = SignUpForm(request.POST)
     if form.is_valid():
         form.save()
@@ -66,6 +78,9 @@ def signup(request):
     return render(request, 'signup.html', context)
 
 def add_user(request):
+    """
+    Непосредственное добавление нового пользователя в случае валидности данных формуляра
+    """
     form = SignUpForm(request.POST or None)
     if request.method == 'POST' and form.is_valid():
         form.save()
@@ -73,6 +88,9 @@ def add_user(request):
     return render(request, 'signup.html', {'form': form, 'f':True})
 
 def my_receipts(request):
+    """
+    Отображение списка рецептов, добавленных текущим пользователем
+    """
     if request.user.is_authenticated:
         print(request.user.username)
         receipts = Recipe.objects.filter(author__username=request.user.username)
@@ -94,6 +112,9 @@ def my_receipts(request):
         return render(request, 'home.html', context)
 
 def update_page(request, pk, con={}):
+    """
+    Страница, содержащая формы изменения рецепта
+    """
     if request.user.is_authenticated:
         receipt = Recipe.objects.get(id=pk)
         form_prod = ProductForm()
@@ -113,6 +134,9 @@ def update_page(request, pk, con={}):
         return render(request, 'home.html', context)
 
 def update_receipt(request, pk):
+    """
+    Обновление данных о рецепте
+    """
     form = RecipeCreationForm(request.POST)
     if request.method == 'POST' and form.is_valid():
         name = form.cleaned_data.get('name')
@@ -128,6 +152,9 @@ def update_receipt(request, pk):
     return render(request, 'edit_recipe.html', {'form': form})
 
 def update_ing_page(request, pk, ing_pk):
+    """
+    Отображение страницы изменения выбранного ингридиента
+    """
     ing = Ingredient.objects.get(id=ing_pk)
     form = IngredientCreationForm(initial={'product_name': ing.product.name, 'qty': ing.qty, 'unit': ing.unit, 'cost': ing.cost})
     context = {
@@ -139,6 +166,9 @@ def update_ing_page(request, pk, ing_pk):
     return render(request, 'edit_ing.html', context)
 
 def update_ing(request, pk, ing_pk):
+    """
+    Обновление данных об ингридиенте
+    """
     form = IngredientCreationForm(request.POST)
     if request.method == 'POST' and form.is_valid():
         product_name = form.cleaned_data.get('product_name')
@@ -160,6 +190,9 @@ def update_ing(request, pk, ing_pk):
     return render(request, 'edit_ing.html', {'form': form, 'f':True})
 
 def add_product(request, pk):
+    """
+    Добавление новой позиции в список ингридиентов выбранного рецепта
+    """
     form = ProductForm(request.POST)
     # print("------------------------------------------------------------------------------------------------------------------------")
     # print(form.is_valid())
@@ -173,6 +206,9 @@ def add_product(request, pk):
     return update_page(request, pk, con={'f': True, 'errors': form.errors})
 
 def new_recipe(request):
+    """
+    Отображение страницы добавления нового рецепта
+    """
     if request.user.is_authenticated:
         form = RecipeCreationForm()
         context = {
@@ -184,6 +220,9 @@ def new_recipe(request):
         return render(request, 'home.html', context)
 
 def add_recipe(request):
+    """
+    Непосредственное добавление нового рецепта
+    """
     form = RecipeCreationForm(request.POST)
     if request.method == 'POST' and form.is_valid():
         name = form.cleaned_data.get('name')
@@ -194,6 +233,9 @@ def add_recipe(request):
     return render(request, 'add_recipe.html', {'form': form, 'f':True})
 
 def del_receipt(request, pk):
+    """
+    Удаление выбранного рецепта
+    """
     if request.user.is_authenticated:
         Recipe.objects.get(id=pk).delete() 
         return receipt_list(request)
@@ -202,10 +244,16 @@ def del_receipt(request, pk):
         return render(request, 'home.html', context)
 
 def del_ing(request, pk, ing_pk):
+    """
+    Удаление выбранного ингридиента
+    """
     ing = Ingredient.objects.get(id=ing_pk).delete()
     return update_page(request, pk)
 
 def note(request, pk):
+    """
+    Cоздание/удаление пометки понравившегося рецепта
+    """
     if request.user.is_authenticated:
         is_exist = Note.objects.filter(author__username=request.user.username, recipe_id=pk).count()
         if is_exist == 0:
@@ -218,6 +266,9 @@ def note(request, pk):
         return render(request, 'home.html', context)
 
 def chosen(request):
+    """
+    Вывод общего аггрегированного списка продуктов, необходимых для приготовления выбранных блюд
+    """
     if request.user.is_authenticated:
         res = []
         w = 0

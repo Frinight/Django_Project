@@ -10,6 +10,7 @@
     {% for receipt in receipts_data %}
       <div class = "receipt_object" style = "margin-bottom: 20px;">
         <span class = "receipt_object-title">{{receipt.name}}</span>
+        <span class = "receipt_object-author">Опубликован пользователем {{receipt.author}}</span>
         <div class = "receipt_object-content">
           <p class="des">{{receipt.description}}</p>
           <span class = "receipt_object-ing">Ингредиенты:</span>
