@@ -15,7 +15,7 @@
         <link href="{% static 'css/banners.css' %}" rel="stylesheet" type="text/css" />
         <link href="{% static 'css/catalog_.css' %}" rel="stylesheet" type="text/css" />
         <link href="{% static 'css/basket_.css' %}" rel="stylesheet" type="text/css" />
-        <link href="{% static 'css/reg_.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'css/reg.css' %}" rel="stylesheet" type="text/css" />
         <link href="{% static 'css/styles.css' %}" rel="stylesheet" type="text/css" />
     </head>
     <body>
@@ -82,7 +82,7 @@
             <nav class="main_nav">
                 <ul class="main_nav-list">
                     <li><a href="{% url 'home' %}" >Главная</a></li>
-                    <li><a href="" >Добавить рецепт</a></li>
+                    <li><a href="{% url 'new_recipe' %}" >Добавить рецепт</a></li>
                     <li><a href="{% url 'signup' %}" >Регистрация</a></li>
                 </ul>
             </nav>
@@ -92,29 +92,7 @@
             </main>
             <footer>
                 <div class="footer">
-                    <!-- <div class="footer_logo">
-                        <span class="footer_logo-logo">Receipts</span>
-                        <span class="copyright">© 2021 Receipts</span>
-                    </div>
-                    <nav class="footer_nav">
-                        <ul class="footer_list">
-                            <li><a href="">О компании</a></li>
-                            <li><a href="">Каталог</a></li>
-                        </ul>
-                        <ul class="footer_list">
-                            <li><a href="">Корзина</a></li>
-                            <li><a href="">Заказ</a></li>
-                        </ul>
-                        <ul class="footer_list">
-                            <li><a href="">Регистрация</a></li>
-                            <li><a href="">Контакты</a></li>
-                        </ul>
-                    </nav>
-                    <ul class="footer_social">
-                        <li><a class="footer_social-vk" href=""><img src="Images/vk.jpg" width="30px"/></a></li>
-                        <li><a class="footer_social-f" href=""><img src="Images/f.jpg" width="30px"/></a></li>
-                        <li><a class="footer_social-i" href=""><img src="Images/i.jpg" width="30px"/></a></li> -->
-                    </ul> 
+                </div>
             </footer>
         </div>
     </body>

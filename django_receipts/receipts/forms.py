@@ -97,17 +97,6 @@ class RecipeCreationForm(forms.ModelForm):
                 'placeholder':'Описание',
             })
         }
-    # def save(self, commit=True):
-    #     rec = super(RecipeCreationForm, self).save(commit=False)
-    #     rec.name = self.cleaned_data['name']
-    #     rec.total_weight = self.cleaned_data['total_weight']
-    #     rec.total_cost = 309
-    #     rec.description = self.cleaned_data['description']
-
-    #     if commit:
-    #         rec.save()
-
-    #     return rec
 
 class SignUpForm(UserCreationForm):
 
@@ -167,7 +156,3 @@ class SignUpForm(UserCreationForm):
             user.save()
 
         return user
-
-# class LoginUserForm(AuthenticationForm):
-#     username = forms.CharField(label='Логин', widget=forms.TextInput(attrs={'class': 'form-input'}))
-#     password = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'class': 'form-input'}))

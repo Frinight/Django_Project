@@ -12,7 +12,7 @@ class Recipe(models.Model):
         return "Рецепт \"" + self.name + "\"" + " опубликован пользователем " + self.author.username
 
 class Product(models.Model):
-    name = models.CharField(max_length=255, unique=True, db_index=True)
+    name = models.CharField(max_length=255, unique=False, db_index=True)
     def __str__(self):
         return self.name
 

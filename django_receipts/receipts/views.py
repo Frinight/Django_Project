@@ -5,27 +5,9 @@ from django.contrib.auth.forms import UserCreationForm
 from django.urls.base import reverse
 from .models import Recipe, Product, Ingredient
 from django.db.models import Sum
-# from django.views.generic import ListView, DetailView
-# from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy 
-import itertools
+# import itertools
 from .forms import *
-
-# Create your views here.
-# def index(request):
-#     return HttpResponse()
-
-# class RecipeListView(ListView):
-#     model = Recipe
-#     template_name = 'home.html'
-#     context_object_name = 'all_receipts_list'
-
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['components'] = [list(map(lambda x: str(x), list(recipe.ingredient_set.all())))
-#                                     for recipe in Recipe.objects.all()]
-
-#         return context
 
 def receipt_list(request):
 
@@ -84,13 +66,6 @@ def signup(request):
 
 def add_user(request):
     form = SignUpForm(request.POST or None)
-    # print(form.__dict__)
-    # print(request.method)
-    # print(form.is_valid())
-    # print(list(itertools.chain(*form.errors)))
-    # print(len(list(itertools.chain(*form.errors))))
-    # print(form.non_field_errors)
-    # print(form.cleaned_data.get('password'))
     if request.method == 'POST' and form.is_valid():
         form.save()
         return render(request, 'home.html', {'mes' : 'Пользователь успешно зарегистрирован', 'f':True})
@@ -117,22 +92,11 @@ def my_receipts(request):
         context = {'mes' : "Вы не авторизованы"}
         return render(request, 'home.html', context)
 
-def update_page(request, pk):
+def update_page(request, pk, con={}):
     if request.user.is_authenticated:
         receipt = Recipe.objects.get(id=pk)
         form_prod = ProductForm()
         form = RecipeCreationForm(initial={'name': receipt.name, 'total_weight': receipt.total_weight, 'description': receipt.description})
-        # print("------------------------------------------------------------------------------------------------------------------------")
-        # print(form.is_valid())
-        # print(form.errors)
-        # print(form.non_field_errors)
-        # if form.is_valid():
-        #     # form.save()
-        #     # username = form.cleaned_data.get('username')
-        #     # password = form.cleaned_data.get('password')
-        #     # user = authenticate(username=username, password=password)
-        #     # login(request, user)
-        #     return redirect('home')
         context = {
             'form': form, 
             'form_prod': form_prod, 
@@ -141,6 +105,7 @@ def update_page(request, pk):
             'components' : receipt.ingredient_set.all(),
             'sum' : receipt.ingredient_set.all().aggregate(Sum('cost'))['cost__sum'],
         }
+        context.update(con)
         return render(request, 'edit_recipe.html', context)
     else:
         context = {'mes' : "Вы не авторизованы"}
@@ -148,16 +113,12 @@ def update_page(request, pk):
 
 def update_receipt(request, pk):
     form = RecipeCreationForm(request.POST)
-    # print("------------------------------------------------------------------------------------------------------------------------")
-    # print(form.is_valid())
-    # print(form.errors)
-    # print(form.non_field_errors)
     if request.method == 'POST' and form.is_valid():
         name = form.cleaned_data.get('name')
         total_weight = form.cleaned_data.get('total_weight')
         description = form.cleaned_data.get('description')
         receipt = Recipe.objects.get(id=pk)
-        receipt.sum = receipt.ingredient_set.all().aggregate(Sum('cost'))['cost__sum']
+        receipt.total_cost = receipt.ingredient_set.all().aggregate(Sum('cost'))['cost__sum'] if receipt.ingredient_set.count() else 0
         receipt.name = name
         receipt.total_weight = total_weight
         receipt.description = description
@@ -191,32 +152,54 @@ def update_ing(request, pk, ing_pk):
         ing.unit = unit
         ing.cost = cost
         ing.save()
+        receipt = Recipe.objects.get(id=pk)
+        receipt.total_cost = receipt.ingredient_set.all().aggregate(Sum('cost'))['cost__sum']
+        receipt.save()
         return update_page(request, pk)
     return render(request, 'edit_ing.html', {'form': form, 'f':True})
 
 def add_product(request, pk):
     form = ProductForm(request.POST)
-    print("------------------------------------------------------------------------------------------------------------------------")
-    print(form.is_valid())
-    print(form.errors)
+    # print("------------------------------------------------------------------------------------------------------------------------")
+    # print(form.is_valid())
+    # print(form.errors)
     if request.method == 'POST' and form.is_valid():
         product_name = form.cleaned_data.get('name')
         prod, f = Product.objects.get_or_create(name=product_name)
-        ing = Ingredient.objects.create(recipe_id=pk, product_id=prod.id, qty=1, unit="г", cost=1)
-        print(ing)
+        ing = Ingredient.objects.create(recipe_id=pk, product_id=prod.id, qty=1, unit="г", cost=0)
+        # print(ing)
         return update_page(request, pk)
-    return render(request, 'home.html')
+    return update_page(request, pk, con={'f': True, 'errors': form.errors})
 
-    #     receipt.sum = receipt.ingredient_set.all().aggregate(Sum('cost'))['cost__sum']
-    #     receipt.name = name
-    #     receipt.total_weight = total_weight
-    #     receipt.description = description
-    #     receipt.save()
-    #     return render(request, 'home.html')
-    # return render(request, 'edit_recipe.html', {'form': form})
-# class LoginUser(LoginView):
-#     form_class = LoginUserForm
-#     template_name = 'home.html'
+def new_recipe(request):
+    if request.user.is_authenticated:
+        form = RecipeCreationForm()
+        context = {
+            'form': form, 
+        }
+        return render(request, 'add_recipe.html', context)
+    else:
+        context = {'mes' : "Вы не авторизованы"}
+        return render(request, 'home.html', context)
 
-#     def get_success_url(self):
-#         return reverse_lazy('home')
+def add_recipe(request):
+    form = RecipeCreationForm(request.POST)
+    if request.method == 'POST' and form.is_valid():
+        name = form.cleaned_data.get('name')
+        total_weight = form.cleaned_data.get('total_weight')
+        description = form.cleaned_data.get('description')
+        receipt = Recipe.objects.create(name=name, total_weight=total_weight, description=description, total_cost=0)
+        return update_page(request, receipt.id)
+    return render(request, 'add_recipe.html', {'form': form, 'f':True})
+
+def del_receipt(request, pk):
+    if request.user.is_authenticated:
+        Recipe.objects.get(id=pk).delete() 
+        return receipt_list(request)
+    else:
+        context = {'mes' : "Вы не авторизованы"}
+        return render(request, 'home.html', context)
+
+def del_ing(request, pk, ing_pk):
+    ing = Ingredient.objects.get(id=ing_pk).delete()
+    return update_page(request, pk)

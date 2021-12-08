@@ -53,7 +53,7 @@
                     <span><a href="/recipe/{{pk}}/ing/{{ingredient.id}}/" title = "Изменить" class="card-link">Изменить</a></span>
                 </td>
                 <td id = "lines_basket" class = "basket-table_remove">
-                    <span><a href="" title = "Удалить" >&times;</a></span>
+                    <span><a href="/recipe/{{pk}}/del/{{ingredient.id}}/" title = "Удалить" >&times;</a></span>
                 </td>
             </tr>
             {% endfor %}
@@ -98,7 +98,7 @@
         <div width = "50%" >
             {{form.errors}}
         </div>
-        <a href="#message" class="close">&times;</a>
+        <a href="/recipe/{{pk}}/" class="close">&times;</a>
     </div>
 </div>
 {% endif %}
